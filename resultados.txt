@@ -1,0 +1,297 @@
+NaiveBayes
+
+=== Evaluation result ===
+
+Scheme: NaiveBayes
+Relation: clean_text_emotions-weka.filters.unsupervised.attribute.ClassAssigner-C2-weka.filters.unsupervised.attribute.Remove-R1,3-weka.filters.unsupervised.attribute.StringToWordVector-R2-Pv_-W1000-prune-rate-1.0-N0-L-stemmerweka.core.stemmers.SnowballStemmer-stopwords-handlerweka.core.stopwords.Rainbow-M10-tokenizerweka.core.tokenizers.NGramTokenizer -max 3 -min 1 -delimiters " \r\n\t.,;:\'\"()?!"
+
+
+Correctly Classified Instances        2412               68.3867 %
+Incorrectly Classified Instances      1115               31.6133 %
+Kappa statistic                          0.3676
+Mean absolute error                      0.3713
+Root mean squared error                  0.4622
+Relative absolute error                 74.2649 %
+Root relative squared error             92.4363 %
+Total Number of Instances             3527     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.769    0.402    0.657      0.769    0.709      0.373    0.760     0.763     sadness
+                 0.598    0.231    0.721      0.598    0.654      0.373    0.760     0.744     happiness
+Weighted Avg.    0.684    0.316    0.689      0.684    0.682      0.373    0.760     0.753     
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 1358  407 |    a = sadness
+  708 1054 |    b = happiness
+J48
+
+=== Evaluation result ===
+
+Scheme: J48
+Options: -C 0.25 -M 2
+Relation: clean_text_emotions-weka.filters.unsupervised.attribute.ClassAssigner-C2-weka.filters.unsupervised.attribute.Remove-R1,3-weka.filters.unsupervised.attribute.StringToWordVector-R2-Pv_-W1000-prune-rate-1.0-N0-L-stemmerweka.core.stemmers.SnowballStemmer-stopwords-handlerweka.core.stopwords.Rainbow-M10-tokenizerweka.core.tokenizers.NGramTokenizer -max 3 -min 1 -delimiters " \r\n\t.,;:\'\"()?!"
+
+
+Correctly Classified Instances        2464               69.8611 %
+Incorrectly Classified Instances      1063               30.1389 %
+Kappa statistic                          0.3971
+Mean absolute error                      0.3474
+Root mean squared error                  0.442 
+Relative absolute error                 69.4859 %
+Root relative squared error             88.3956 %
+Total Number of Instances             3527     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.771    0.373    0.674      0.771    0.719      0.401    0.782     0.767     sadness
+                 0.627    0.229    0.732      0.627    0.675      0.401    0.782     0.750     happiness
+Weighted Avg.    0.699    0.302    0.703      0.699    0.697      0.401    0.782     0.758     
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 1360  405 |    a = sadness
+  658 1104 |    b = happiness
+MultilayerPerceptron
+
+=== Evaluation result ===
+
+Scheme: MultilayerPerceptron
+Options: -L 0.3 -M 0.2 -N 500 -V 0 -S 2435 -E 20 -H 4
+Relation: clean_text_emotions-weka.filters.unsupervised.attribute.ClassAssigner-C2-weka.filters.unsupervised.attribute.Remove-R1,3-weka.filters.unsupervised.attribute.StringToWordVector-R2-Pv_-W1000-prune-rate-1.0-N0-L-stemmerweka.core.stemmers.SnowballStemmer-stopwords-handlerweka.core.stopwords.Rainbow-M10-tokenizerweka.core.tokenizers.NGramTokenizer -max 3 -min 1 -delimiters " \r\n\t.,;:\'\"()?!"
+
+
+Correctly Classified Instances        1765               50.0425 %
+Incorrectly Classified Instances      1762               49.9575 %
+Kappa statistic                          0     
+Mean absolute error                      0.4999
+Root mean squared error                  0.5191
+Relative absolute error                 99.9756 %
+Root relative squared error            103.8127 %
+Total Number of Instances             3527     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 1.000    1.000    0.500      1.000    0.667      0.000    0.751     0.754     sadness
+                 0.000    0.000    0.000      0.000    0.000      0.000    0.751     0.724     happiness
+Weighted Avg.    0.500    0.500    0.250      0.500    0.334      0.000    0.751     0.739     
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 1765    0 |    a = sadness
+ 1762    0 |    b = happiness
+NaiveBayes
+
+=== Evaluation result ===
+
+Scheme: NaiveBayes
+Relation: clean_text_emotions-weka.filters.unsupervised.attribute.ClassAssigner-C2-weka.filters.unsupervised.attribute.Remove-R1,3-weka.filters.unsupervised.attribute.StringToWordVector-R2-Pv_-W20000-prune-rate-1.0-N0-L-stemmerweka.core.stemmers.SnowballStemmer-stopwords-handlerweka.core.stopwords.Rainbow-M10-tokenizerweka.core.tokenizers.NGramTokenizer -max 3 -min 1 -delimiters " \r\n\t.,;:\'\"()?!"
+
+
+Correctly Classified Instances        2412               68.3867 %
+Incorrectly Classified Instances      1115               31.6133 %
+Kappa statistic                          0.3676
+Mean absolute error                      0.3709
+Root mean squared error                  0.4619
+Relative absolute error                 74.1835 %
+Root relative squared error             92.3757 %
+Total Number of Instances             3527     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.771    0.403    0.657      0.771    0.709      0.373    0.761     0.763     sadness
+                 0.597    0.229    0.722      0.597    0.654      0.373    0.761     0.744     happiness
+Weighted Avg.    0.684    0.316    0.689      0.684    0.681      0.373    0.761     0.754     
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 1360  405 |    a = sadness
+  710 1052 |    b = happiness
+J48
+
+=== Evaluation result ===
+
+Scheme: J48
+Options: -C 0.25 -M 2
+Relation: clean_text_emotions-weka.filters.unsupervised.attribute.ClassAssigner-C2-weka.filters.unsupervised.attribute.Remove-R1,3-weka.filters.unsupervised.attribute.StringToWordVector-R2-Pv_-W20000-prune-rate-1.0-N0-L-stemmerweka.core.stemmers.SnowballStemmer-stopwords-handlerweka.core.stopwords.Rainbow-M10-tokenizerweka.core.tokenizers.NGramTokenizer -max 3 -min 1 -delimiters " \r\n\t.,;:\'\"()?!"
+
+
+Correctly Classified Instances        2464               69.8611 %
+Incorrectly Classified Instances      1063               30.1389 %
+Kappa statistic                          0.3971
+Mean absolute error                      0.347 
+Root mean squared error                  0.4422
+Relative absolute error                 69.4051 %
+Root relative squared error             88.441  %
+Total Number of Instances             3527     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.771    0.374    0.674      0.771    0.719      0.401    0.782     0.767     sadness
+                 0.626    0.229    0.732      0.626    0.675      0.401    0.782     0.749     happiness
+Weighted Avg.    0.699    0.302    0.703      0.699    0.697      0.401    0.782     0.758     
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 1361  404 |    a = sadness
+  659 1103 |    b = happiness
+MultilayerPerceptron
+
+=== Evaluation result ===
+
+Scheme: MultilayerPerceptron
+Options: -L 0.3 -M 0.2 -N 500 -V 0 -S 2435 -E 20 -H 4
+Relation: clean_text_emotions-weka.filters.unsupervised.attribute.ClassAssigner-C2-weka.filters.unsupervised.attribute.Remove-R1,3-weka.filters.unsupervised.attribute.StringToWordVector-R2-Pv_-W20000-prune-rate-1.0-N0-L-stemmerweka.core.stemmers.SnowballStemmer-stopwords-handlerweka.core.stopwords.Rainbow-M10-tokenizerweka.core.tokenizers.NGramTokenizer -max 3 -min 1 -delimiters " \r\n\t.,;:\'\"()?!"
+
+
+Correctly Classified Instances        1765               50.0425 %
+Incorrectly Classified Instances      1762               49.9575 %
+Kappa statistic                          0     
+Mean absolute error                      0.4999
+Root mean squared error                  0.5163
+Relative absolute error                 99.9775 %
+Root relative squared error            103.2497 %
+Total Number of Instances             3527     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 1.000    1.000    0.500      1.000    0.667      0.000    0.762     0.761     sadness
+                 0.000    0.000    0.000      0.000    0.000      0.000    0.762     0.738     happiness
+Weighted Avg.    0.500    0.500    0.250      0.500    0.334      0.000    0.762     0.750     
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 1765    0 |    a = sadness
+ 1762    0 |    b = happiness
+NaiveBayes
+
+=== Evaluation result ===
+
+Scheme: NaiveBayes
+Relation: clean_text_emotions-weka.filters.unsupervised.attribute.ClassAssigner-C2-weka.filters.unsupervised.attribute.Remove-R1,3-weka.filters.unsupervised.attribute.StringToWordVector-R2-Pv_-W20000-prune-rate-1.0-N0-L-stemmerweka.core.stemmers.SnowballStemmer-stopwords-handlerweka.core.stopwords.Rainbow-M10-tokenizerweka.core.tokenizers.NGramTokenizer -max 3 -min 1 -delimiters " \r\n\t.,;:\'\"()?!"
+
+
+Correctly Classified Instances        2412               68.3867 %
+Incorrectly Classified Instances      1115               31.6133 %
+Kappa statistic                          0.3676
+Mean absolute error                      0.3709
+Root mean squared error                  0.4619
+Relative absolute error                 74.1835 %
+Root relative squared error             92.3757 %
+Total Number of Instances             3527     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.771    0.403    0.657      0.771    0.709      0.373    0.761     0.763     sadness
+                 0.597    0.229    0.722      0.597    0.654      0.373    0.761     0.744     happiness
+Weighted Avg.    0.684    0.316    0.689      0.684    0.681      0.373    0.761     0.754     
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 1360  405 |    a = sadness
+  710 1052 |    b = happiness
+J48
+
+=== Evaluation result ===
+
+Scheme: J48
+Options: -C 0.25 -M 2
+Relation: clean_text_emotions-weka.filters.unsupervised.attribute.ClassAssigner-C2-weka.filters.unsupervised.attribute.Remove-R1,3-weka.filters.unsupervised.attribute.StringToWordVector-R2-Pv_-W20000-prune-rate-1.0-N0-L-stemmerweka.core.stemmers.SnowballStemmer-stopwords-handlerweka.core.stopwords.Rainbow-M10-tokenizerweka.core.tokenizers.NGramTokenizer -max 3 -min 1 -delimiters " \r\n\t.,;:\'\"()?!"
+
+
+Correctly Classified Instances        2464               69.8611 %
+Incorrectly Classified Instances      1063               30.1389 %
+Kappa statistic                          0.3971
+Mean absolute error                      0.347 
+Root mean squared error                  0.4422
+Relative absolute error                 69.4051 %
+Root relative squared error             88.441  %
+Total Number of Instances             3527     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.771    0.374    0.674      0.771    0.719      0.401    0.782     0.767     sadness
+                 0.626    0.229    0.732      0.626    0.675      0.401    0.782     0.749     happiness
+Weighted Avg.    0.699    0.302    0.703      0.699    0.697      0.401    0.782     0.758     
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 1361  404 |    a = sadness
+  659 1103 |    b = happiness
+MultilayerPerceptron
+
+=== Evaluation result ===
+
+Scheme: MultilayerPerceptron
+Options: -L 0.3 -M 0.2 -N 500 -V 0 -S 2435 -E 20 -H 4
+Relation: clean_text_emotions-weka.filters.unsupervised.attribute.ClassAssigner-C2-weka.filters.unsupervised.attribute.Remove-R1,3-weka.filters.unsupervised.attribute.StringToWordVector-R2-Pv_-W20000-prune-rate-1.0-N0-L-stemmerweka.core.stemmers.SnowballStemmer-stopwords-handlerweka.core.stopwords.Rainbow-M10-tokenizerweka.core.tokenizers.NGramTokenizer -max 3 -min 1 -delimiters " \r\n\t.,;:\'\"()?!"
+
+
+Correctly Classified Instances        1765               50.0425 %
+Incorrectly Classified Instances      1762               49.9575 %
+Kappa statistic                          0     
+Mean absolute error                      0.4999
+Root mean squared error                  0.5163
+Relative absolute error                 99.9775 %
+Root relative squared error            103.2497 %
+Total Number of Instances             3527     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 1.000    1.000    0.500      1.000    0.667      0.000    0.762     0.761     sadness
+                 0.000    0.000    0.000      0.000    0.000      0.000    0.762     0.738     happiness
+Weighted Avg.    0.500    0.500    0.250      0.500    0.334      0.000    0.762     0.750     
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 1765    0 |    a = sadness
+ 1762    0 |    b = happiness
+Stacking
+
+=== Evaluation result ===
+
+Scheme: Stacking
+Options: -X 10 -M "weka.classifiers.meta.AdaBoostM1 -P 100 -S 1 -I 10 -W weka.classifiers.trees.DecisionStump" -S 1 -num-slots 1 -B "weka.classifiers.functions.MultilayerPerceptron -L 0.3 -M 0.2 -N 500 -V 0 -S 0 -E 20 -H 10" -B "weka.classifiers.bayes.NaiveBayes " -B "weka.classifiers.trees.RandomForest -P 100 -I 100 -num-slots 1 -K 0 -M 1.0 -V 0.001 -S 1" -B "weka.classifiers.trees.J48 -C 0.25 -M 2"
+Relation: clean_text_emotions-weka.filters.unsupervised.attribute.ClassAssigner-C2-weka.filters.unsupervised.attribute.Remove-R1,3-weka.filters.unsupervised.attribute.StringToWordVector-R2-Pv_-W20000-prune-rate-1.0-N0-L-stemmerweka.core.stemmers.SnowballStemmer-stopwords-handlerweka.core.stopwords.Rainbow-M10-tokenizerweka.core.tokenizers.NGramTokenizer -max 3 -min 1 -delimiters " \r\n\t.,;:\'\"()?!"
+
+
+Correctly Classified Instances        2703               76.6374 %
+Incorrectly Classified Instances       824               23.3626 %
+Kappa statistic                          0.5328
+Mean absolute error                      0.3123
+Root mean squared error                  0.405 
+Relative absolute error                 62.4644 %
+Root relative squared error             81.0032 %
+Total Number of Instances             3527     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.711    0.178    0.800      0.711    0.753      0.536    0.840     0.815     sadness
+                 0.822    0.289    0.740      0.822    0.778      0.536    0.840     0.806     happiness
+Weighted Avg.    0.766    0.234    0.770      0.766    0.766      0.536    0.840     0.810     
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 1255  510 |    a = sadness
+  314 1448 |    b = happiness

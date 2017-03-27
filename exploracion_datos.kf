@@ -7,7 +7,7 @@
 				"loader" : {
 					"type" : "loader",
 					"class" : "weka.core.converters.CSVLoader",
-					"filePath" : "/home/javierlopm/Documents/tristeono/clean_text_emotions.csv",
+					"filePath" : "/home/javier/Documents/tristeono/clean_text_emotions.csv",
 					"useRelativePath" : false,
 					"options" : "-N 2 -S 3,4 -R 1 -M ? -B 100 -E \"\\\",\\'\" -F ,"
 				},
@@ -43,17 +43,18 @@
 				"filter" : {
 					"type" : "optionHandler",
 					"class" : "weka.filters.unsupervised.attribute.StringToWordVector",
-					"options" : "-R last -P v_ -W 1000 -prune-rate -1.0 -N 0 -L -stemmer weka.core.stemmers.SnowballStemmer -stopwords-handler weka.core.stopwords.Rainbow -M 40 -tokenizer \"weka.core.tokenizers.WordTokenizer -delimiters \\\" \\@@-@@r\\@@-@@n\\@@-@@t.,;:\\\\\\'\\\\\\\"()?!\\\"\""
+					"options" : "-R last -P v_ -W 20000 -prune-rate -1.0 -N 0 -L -stemmer weka.core.stemmers.SnowballStemmer -stopwords-handler weka.core.stopwords.Rainbow -M 10 -tokenizer \"weka.core.tokenizers.NGramTokenizer -max 3 -min 1 -delimiters \\\" \\@@-@@r\\@@-@@n\\@@-@@t.,;:\\\\\\'\\\\\\\"()?!\\\"\""
 				},
 				"name" : "StringToWordVector"
 			},
 			"connections" : {
 				"dataSet" : [
 					"TextViewer",
+					"CSVSaver",
 					"TrainTestSplitMaker"
 				]
 			},
-			"coordinates" : "360,0"
+			"coordinates" : "386,0"
 		},
 		{
 			"class" : "weka.knowledgeflow.steps.TextViewer",
@@ -62,7 +63,7 @@
 			},
 			"connections" : {
 			},
-			"coordinates" : "360,120"
+			"coordinates" : "228,104"
 		},
 		{
 			"class" : "weka.knowledgeflow.steps.Filter",
@@ -99,7 +100,7 @@
 					"ClassifierPerformanceEvaluator2"
 				]
 			},
-			"coordinates" : "547,155"
+			"coordinates" : "517,164"
 		},
 		{
 			"class" : "weka.knowledgeflow.steps.TextViewer",
@@ -107,8 +108,11 @@
 				"name" : "TextViewer2"
 			},
 			"connections" : {
+				"text" : [
+					"TextSaver"
+				]
 			},
-			"coordinates" : "706,385"
+			"coordinates" : "751,399"
 		},
 		{
 			"class" : "weka.knowledgeflow.steps.ClassifierPerformanceEvaluator",
@@ -124,7 +128,7 @@
 					"TextViewer2"
 				]
 			},
-			"coordinates" : "704,280"
+			"coordinates" : "762,282"
 		},
 		{
 			"class" : "weka.knowledgeflow.steps.Classifier",
@@ -144,7 +148,7 @@
 					"ClassifierPerformanceEvaluator3"
 				]
 			},
-			"coordinates" : "622,154"
+			"coordinates" : "641,161"
 		},
 		{
 			"class" : "weka.knowledgeflow.steps.TrainTestSplitMaker",
@@ -159,12 +163,13 @@
 					"MultilayerPerceptron",
 					"NaiveBayes",
 					"J48",
-					"AdaBoostM1"
+					"Stacking"
 				],
 				"testSet" : [
 					"MultilayerPerceptron",
 					"NaiveBayes",
-					"J48"
+					"J48",
+					"Stacking"
 				]
 			},
 			"coordinates" : "688,3"
@@ -187,7 +192,7 @@
 					"ClassifierPerformanceEvaluator"
 				]
 			},
-			"coordinates" : "704,152"
+			"coordinates" : "740,166"
 		},
 		{
 			"class" : "weka.knowledgeflow.steps.ClassifierPerformanceEvaluator",
@@ -203,7 +208,7 @@
 					"TextViewer3"
 				]
 			},
-			"coordinates" : "540,281"
+			"coordinates" : "503,275"
 		},
 		{
 			"class" : "weka.knowledgeflow.steps.ClassifierPerformanceEvaluator",
@@ -219,27 +224,7 @@
 					"TextViewer4"
 				]
 			},
-			"coordinates" : "613,287"
-		},
-		{
-			"class" : "weka.knowledgeflow.steps.Classifier",
-			"properties" : {
-				"classifier" : {
-					"type" : "optionHandler",
-					"class" : "weka.classifiers.meta.AdaBoostM1",
-					"options" : "-P 100 -S 1 -I 10 -W weka.classifiers.trees.DecisionStump"
-				},
-				"loadClassifierFileName" : "",
-				"name" : "AdaBoostM1",
-				"resetIncrementalClassifier" : false,
-				"updateIncrementalClassifier" : true
-			},
-			"connections" : {
-				"batchClassifier" : [
-					"ClassifierPerformanceEvaluator4"
-				]
-			},
-			"coordinates" : "793,134"
+			"coordinates" : "628,283"
 		},
 		{
 			"class" : "weka.knowledgeflow.steps.ClassifierPerformanceEvaluator",
@@ -255,7 +240,7 @@
 					"TextViewer5"
 				]
 			},
-			"coordinates" : "797,278"
+			"coordinates" : "898,296"
 		},
 		{
 			"class" : "weka.knowledgeflow.steps.TextViewer",
@@ -263,8 +248,11 @@
 				"name" : "TextViewer3"
 			},
 			"connections" : {
+				"text" : [
+					"TextSaver"
+				]
 			},
-			"coordinates" : "535,385"
+			"coordinates" : "556,387"
 		},
 		{
 			"class" : "weka.knowledgeflow.steps.TextViewer",
@@ -272,8 +260,11 @@
 				"name" : "TextViewer4"
 			},
 			"connections" : {
+				"text" : [
+					"TextSaver"
+				]
 			},
-			"coordinates" : "616,389"
+			"coordinates" : "643,393"
 		},
 		{
 			"class" : "weka.knowledgeflow.steps.TextViewer",
@@ -281,8 +272,62 @@
 				"name" : "TextViewer5"
 			},
 			"connections" : {
+				"text" : [
+					"TextSaver"
+				]
 			},
-			"coordinates" : "810,385"
+			"coordinates" : "871,394"
+		},
+		{
+			"class" : "weka.knowledgeflow.steps.TextSaver",
+			"properties" : {
+				"append" : true,
+				"file" : "/home/javier/Documents/tristeono/resultados.txt",
+				"name" : "TextSaver",
+				"writeTitleString" : true
+			},
+			"connections" : {
+			},
+			"coordinates" : "696,591"
+		},
+		{
+			"class" : "weka.knowledgeflow.steps.Classifier",
+			"properties" : {
+				"classifier" : {
+					"type" : "optionHandler",
+					"class" : "weka.classifiers.meta.Stacking",
+					"options" : "-X 10 -M \"weka.classifiers.meta.AdaBoostM1 -P 100 -S 1 -I 10 -W weka.classifiers.trees.DecisionStump\" -S 1 -num-slots 1 -B \"weka.classifiers.functions.MultilayerPerceptron -L 0.3 -M 0.2 -N 500 -V 0 -S 0 -E 20 -H 10\" -B \"weka.classifiers.bayes.NaiveBayes \" -B \"weka.classifiers.trees.RandomForest -P 100 -I 100 -num-slots 1 -K 0 -M 1.0 -V 0.001 -S 1\" -B \"weka.classifiers.trees.J48 -C 0.25 -M 2\""
+				},
+				"loadClassifierFileName" : "",
+				"name" : "Stacking",
+				"resetIncrementalClassifier" : false,
+				"updateIncrementalClassifier" : true
+			},
+			"connections" : {
+				"batchClassifier" : [
+					"ClassifierPerformanceEvaluator4"
+				]
+			},
+			"coordinates" : "845,161"
+		},
+		{
+			"class" : "weka.knowledgeflow.steps.Saver",
+			"properties" : {
+				"name" : "CSVSaver",
+				"relationNameForFilename" : true,
+				"saver" : {
+					"type" : "saver",
+					"class" : "weka.core.converters.CSVSaver",
+					"filePath" : "",
+					"dir" : "/home/javier/Documents/tristeono",
+					"prefix" : "clean_final",
+					"useRelativePath" : true,
+					"options" : "-F , -M ? -decimal 6"
+				}
+			},
+			"connections" : {
+			},
+			"coordinates" : "366,151"
 		}
 	]
 }
