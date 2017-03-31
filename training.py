@@ -27,6 +27,7 @@ for i in estimators:
     predicted = cross_val_score(clf, data, target, cv=10)
     precs.append(predicted.mean())
     print("Precisión de "+ str(predicted.mean()) + " para " + str(i) + "estimadores.")
+    clf.fit(data, target)
 
     # Guardando el modelo
     with open('AdaBoost'+str(i)+".pkl", 'wb') as fid:
@@ -57,6 +58,7 @@ for num_trees in tree_list:
     results = cross_val_score(model, X, Y, cv=kfold)
     precs.append(predicted.mean())
     print("Precisión de "+ str(predicted.mean()) + " para " + str(i) + "estimadores.")
+    cart.fit(data, target)
 
     # Guardando el modelo
     with open('BaggingTrees'+str(num_trees)+".pkl", 'wb') as fid:
@@ -71,5 +73,5 @@ plt.show()
 
 
 ##Para cargar un modelo:
-#with open('my_dumped_classifier.pkl', 'rb') as fid:
-#    gnb_loaded = cPickle.load(fid)
+#with open('BaggingTrees10.pkl', 'rb') as fid:
+#    cart = cPickle.load(fid)
