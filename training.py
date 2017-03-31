@@ -19,7 +19,7 @@ data.drop(data.columns[[0]],axis=1,inplace=True)
 #AdaBoostClassifier
 # predicted = cross_val_predict(clf, data, target, cv=10)
 for i in [10,100,200,350]:
-    clf = AdaBoostClassifier(n_estimators=350)
+    clf = AdaBoostClassifier(n_estimators=i)
     predicted = cross_val_score(clf, data, target, cv=10)
     print(predicted.mean())
 
