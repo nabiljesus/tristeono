@@ -18,15 +18,16 @@ target = data[[0]].replace('sadness','1.0').replace('happiness','0.0').astype('f
 target = pd.DataFrame.as_matrix(target).ravel()
 data.drop(data.columns[[0]],axis=1,inplace=True)
 
+
+
 #AdaBoostClassifier
-# predicted = cross_val_predict(clf, data, target, cv=10)
 estimators = [10,100,200,350]
 precs = []
 for i in estimators:
     clf = AdaBoostClassifier(n_estimators=i)
     predicted = cross_val_score(clf, data, target, cv=10)
     precs.append(predicted.mean())
-    print("Precisión de "+ str(predicted.mean()) + " para " + str(i) + "estimadores.")
+    print("Precisión de "+ str(predicted.mean()) + " para " + str(i) + " estimadores.")
     clf.fit(data, target)
 
     # Guardando el modelo
@@ -40,38 +41,36 @@ plt.xlabel('n_estimators')
 plt.ylabel('precision')
 plt.show()
 
- 
 
 
-# Bagged Decision Trees for Classification
+#Extra Trees
+from sklearn.ensemble import ExtraTreesClassifier
 X = data
 Y = target
-seed = 85
-kfold = KFold(n_splits=100, random_state=seed)
-cart = DecisionTreeClassifier()
-tree_list=[1,10,30,50,100]
+seed = 7
 precs = []
-
+tree_list=[1,10,30,50,100]
 for num_trees in tree_list:
-    #num_trees=50
-    model = BaggingClassifier(base_estimator=cart, n_estimators=num_trees, random_state=seed)
+    max_features = 7
+    kfold = KFold(n_splits=10, random_state=seed)
+    model = ExtraTreesClassifier(n_estimators=num_trees, max_features=max_features)
+    model.fit(X, Y)
     results = cross_val_score(model, X, Y, cv=kfold)
-    precs.append(predicted.mean())
-    print("Precisión de "+ str(predicted.mean()) + " para " + str(i) + "estimadores.")
-    cart.fit(data, target)
-
+    precs.append(results.mean())
+    print("Precisión de "+ str(results.mean()) + " para " + str(num_trees) + " estimadores.")
     # Guardando el modelo
-    with open('BaggingTrees'+str(num_trees)+".pkl", 'wb') as fid:
-        cPickle.dump(cart, fid)   
+    with open('ExtraTrees'+str(num_trees)+".pkl", 'wb') as fid:
+        cPickle.dump(model, fid)  
 
 #graph
 plt.plot(tree_list, precs, '--o')
-plt.title('Scatterplot of Bagged Decision Trees')
+plt.title('Scatterplot of AdaBoost')
 plt.xlabel('n_estimators')
 plt.ylabel('precision')
 plt.show()
 
 
-##Para cargar un modelo:
-#with open('BaggingTrees10.pkl', 'rb') as fid:
-#    cart = cPickle.load(fid)
+
+# ##Para cargar un modelo:
+# #with open('BaggingTrees10.pkl', 'rb') as fid:
+# #    cart = cPickle.load(fid)
