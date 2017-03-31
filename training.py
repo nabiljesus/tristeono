@@ -7,6 +7,7 @@ from sklearn.ensemble        import AdaBoostClassifier
 from sklearn.ensemble import BaggingClassifier
 from sklearn.tree import DecisionTreeClassifier
 import cPickle
+import matplotlib.pyplot as plt
 
 #Limpiando la data
 data = pd.read_csv('emotions_vector.csv')
@@ -32,7 +33,12 @@ for i in estimators:
 
 # import pdb; pdb.set_trace()
 
-# print(predicted)
+#graph
+plt.plot(estimators, precs, '--o')
+plt.xlabel('n_estimators')
+plt.ylabel('precision')
+plt.show()
+
  
 
 
@@ -42,15 +48,26 @@ Y = target
 seed = 85
 kfold = KFold(n_splits=100, random_state=seed)
 cart = DecisionTreeClassifier()
-for num_trees in [1,10,30,50,100]:
+tree_list=[1,10,30,50,100]
+precs = []
+
+for num_trees in tree_list:
     #num_trees=50
     model = BaggingClassifier(base_estimator=cart, n_estimators=num_trees, random_state=seed)
     results = cross_val_score(model, X, Y, cv=kfold)
+    precs.append(predicted.mean())
     print(results.mean())
 
     # Guardando el modelo
     with open('BaggingTrees'+str(num_trees)+".pkl", 'wb') as fid:
         cPickle.dump(cart, fid)   
+
+#graph
+plt.plot(tree_list, precs, '--o')
+plt.xlabel('n_estimators')
+plt.ylabel('precision')
+plt.show()
+
 
 ##Para cargar un modelo:
 #with open('my_dumped_classifier.pkl', 'rb') as fid:
