@@ -1,30 +1,32 @@
 # -*- coding: utf-8 -*-
+from __future__ import print_function
 import tweepy as tw
-from sklearn.externals import joblib
+import cPickle
 from secrets import APIKEY,SECRET,ACESS_TOKEN,ACCESS_SECRET
-
 from langdetect import detect
 from our_utils  import stop_words, important_ngrams
 import  snowballstemmer
+import numpy as np
 
 stemmer = snowballstemmer.stemmer('english');
 
+search = raw_input("introduzca una búsqueda en inglés>")
 
 def to_ngrams(lista):
     salida = []
     for i in range(2,4):
         for index in range(0,len(lista)+1-i):
-            salida += [lista[index:index+i]]
+            salida += [' '.join(lista[index:index+i])]
     return salida
 
 
 with open('AdaBoost350.pkl', 'rb') as fid:
     model_loaded = cPickle.load(fid)
-    
 
 class MyStreamListener(tw.StreamListener):
 
     def on_status(self, status):
+        # print("breakfast!")
         # print("un estatus!")
         # print(status.text)
         # Detectamos si el tweet está en inglés
@@ -43,14 +45,19 @@ class MyStreamListener(tw.StreamListener):
             stemmed_2_3  = stemmer.stemWords(word_list)
 
             n_grams    = stemmed_1 + stemmed_2_3
+            n_grams    = list(map((lambda x: x.encode('ascii', 'ignore')),n_grams))
 
             # Convirtiendo al vector compatible con nuestra tabla de datos
             word_vector = []
             for word in important_ngrams:
                 word_vector += [int(word in n_grams)]
-            print("important! "+ str(sum(word_vector))+ " words matched in table.")
-            print(model_loaded.predict(word_vector))
-            print(model_loaded.predict_proba(word_vector))
+            # print("important! "+ str(sum(word_vector))+ " words matched in table.")
+            word_vector = np.array(word_vector).reshape(1,-1)
+            clas = "happy :)" if model_loaded.predict(word_vector)[0] == 0 else "sad :("
+            pred = model_loaded.predict_proba(word_vector)
+
+            print(("happy:{}  sad:{} class: {} | ".format(pred[0][0],pred[0][1],clas)),end='')
+            print(status.text)
 
         else:
             # Lenguaje diferente al inglés
@@ -74,12 +81,12 @@ auth.set_access_token(ACESS_TOKEN, ACCESS_SECRET)
 try:
     redirect_url = auth.get_authorization_url()
 except tw.TweepError:
-    print 'Error! Failed to get request token.'
+    print('Error! Failed to get request token.')
     exit()
 
 api = tw.API(auth)
 
 myStream = tw.Stream(auth = api.auth, listener=MyStreamListener())
-res = myStream.filter(track=['sad'])
+res = myStream.filter(track=[search])
 print(res)
 
