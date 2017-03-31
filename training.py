@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import pandas as pd
 from sklearn.model_selection import cross_val_predict
 from sklearn.model_selection import KFold
@@ -21,7 +22,7 @@ data.drop(data.columns[[0]],axis=1,inplace=True)
 for i in [10,100,200,350]:
     clf = AdaBoostClassifier(n_estimators=i)
     predicted = cross_val_score(clf, data, target, cv=10)
-    print(predicted.mean())
+    print("Precisión de "+ str(predicted.mean()) + " para " + str(i) + "estimadores.")
 
     # Guardando el modelo
     with open('AdaBoost'+str(i)+".pkl", 'wb') as fid:
