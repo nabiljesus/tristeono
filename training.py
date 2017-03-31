@@ -22,24 +22,15 @@ data.drop(data.columns[[0]],axis=1,inplace=True)
 
 
 #AdaBoostClassifier
-<<<<<<< HEAD
-# predicted = cross_val_predict(clf, data, target, cv=10)
-estimators = [10,50,100,150,200,350]
-=======
+
 estimators = [10,100,200,350]
->>>>>>> aae0be448f8dfc779d103cf9bdcaf0c1b52b8168
 precs = []
 for i in estimators:
     clf = AdaBoostClassifier(n_estimators=i)
     clf.fit(data, target)
     predicted = cross_val_score(clf, data, target, cv=10)
     precs.append(predicted.mean())
-<<<<<<< HEAD
-    print("Precisión de "+ str(predicted.mean()) + " para " + str(i) + "estimadores.")
-=======
     print("Precisión de "+ str(predicted.mean()) + " para " + str(i) + " estimadores.")
-    clf.fit(data, target)
->>>>>>> aae0be448f8dfc779d103cf9bdcaf0c1b52b8168
 
     # Guardando el modelo
     with open('AdaBoost'+str(i)+".pkl", 'wb') as fid:
