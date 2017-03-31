@@ -57,7 +57,7 @@ class MyStreamListener(tw.StreamListener):
             pred = model_loaded.predict_proba(word_vector)
 
             print(("happy:{}  sad:{} class: {} | ".format(pred[0][0],pred[0][1],clas)),end='')
-            print(status.text)
+            print(status.text.encode('ascii','ignore'))
 
         else:
             # Lenguaje diferente al inglés
