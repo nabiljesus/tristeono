@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import tweepy as tw
+from sklearn.externals import joblib
 from secrets import APIKEY,SECRET,ACESS_TOKEN,ACCESS_SECRET
 
 from langdetect import detect
@@ -17,7 +18,9 @@ def to_ngrams(lista):
     return salida
 
 
-
+with open('AdaBoost350.pkl', 'rb') as fid:
+    model_loaded = cPickle.load(fid)
+    
 
 class MyStreamListener(tw.StreamListener):
 
@@ -46,6 +49,8 @@ class MyStreamListener(tw.StreamListener):
             for word in important_ngrams:
                 word_vector += [int(word in n_grams)]
             print("important! "+ str(sum(word_vector))+ " words matched in table.")
+            print(model_loaded.predict(word_vector))
+            print(model_loaded.predict_proba(word_vector))
 
         else:
             # Lenguaje diferente al inglés
@@ -78,4 +83,3 @@ myStream = tw.Stream(auth = api.auth, listener=MyStreamListener())
 res = myStream.filter(track=['sad'])
 print(res)
 
-import pdb; pdb.set_trace()
