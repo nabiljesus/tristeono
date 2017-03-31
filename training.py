@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import pandas as pd
 from sklearn.model_selection import cross_val_predict
 from sklearn.model_selection import KFold
@@ -25,16 +26,15 @@ for i in estimators:
     clf = AdaBoostClassifier(n_estimators=i)
     predicted = cross_val_score(clf, data, target, cv=10)
     precs.append(predicted.mean())
-    print(predicted.mean())
+    print("Precisión de "+ str(predicted.mean()) + " para " + str(i) + "estimadores.")
 
     # Guardando el modelo
     with open('AdaBoost'+str(i)+".pkl", 'wb') as fid:
         cPickle.dump(clf, fid)   
 
-# import pdb; pdb.set_trace()
-
 #graph
 plt.plot(estimators, precs, '--o')
+plt.title('Scatterplot of AdaBoost')
 plt.xlabel('n_estimators')
 plt.ylabel('precision')
 plt.show()
@@ -56,7 +56,7 @@ for num_trees in tree_list:
     model = BaggingClassifier(base_estimator=cart, n_estimators=num_trees, random_state=seed)
     results = cross_val_score(model, X, Y, cv=kfold)
     precs.append(predicted.mean())
-    print(results.mean())
+    print("Precisión de "+ str(predicted.mean()) + " para " + str(i) + "estimadores.")
 
     # Guardando el modelo
     with open('BaggingTrees'+str(num_trees)+".pkl", 'wb') as fid:
@@ -64,6 +64,7 @@ for num_trees in tree_list:
 
 #graph
 plt.plot(tree_list, precs, '--o')
+plt.title('Scatterplot of Bagged Decision Trees')
 plt.xlabel('n_estimators')
 plt.ylabel('precision')
 plt.show()
